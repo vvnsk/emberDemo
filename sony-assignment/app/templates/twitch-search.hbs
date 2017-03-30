@@ -19,7 +19,7 @@
         {{/if}}
         
         {{#each model.pages as |number|}}
-          <li><a href="#" {{action "selectPage" number}}>{{number}}</a></li>
+          <li class="item {{active-class number model.page}}"><a href="#" {{action "selectPage" number}}>{{number}}</a></li>
         {{/each}}
         
         {{#if model.nextPage}}

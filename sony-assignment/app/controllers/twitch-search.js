@@ -17,7 +17,6 @@ export default Ember.Controller.extend({
                 });
             };
             var setNextPage = function(){
-                
                 var page = that.model.page;
                 var totalPages = that.model.totalPages;
                 Ember.run(function() {
@@ -84,7 +83,7 @@ export default Ember.Controller.extend({
         },selectPage: function(number) {
             var that = this;
             Ember.run(function() {
-                that.set('model.page', number);
+                that.set('model.page', number-1);
             });
             this.send('fetchResults','page');
         }
