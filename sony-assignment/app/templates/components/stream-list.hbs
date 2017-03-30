@@ -1,9 +1,14 @@
-<h2>{{title}}</h2>
-
-<ul>
-  {{#each games as |game|}}
-    <li class="listItem">{{game}}</li>
-  {{/each}}
-</ul>
+<div>
+  <h2>{{title}}</h2>
+  {{#if start}}
+    Search for Streams!
+  {{else if games.length}}
+    {{#each games as |ele|}}
+      <div class="listItem"><p><img src={{ele.preview.small}} />{{ele.channel.game}}</p>{{ele.channel.display_name}}<p>Views : {{ele.channel.views}}</p></div>
+    {{/each}}
+  {{else}}
+    No Results!
+  {{/if}}
+</div>
 
 {{yield}}

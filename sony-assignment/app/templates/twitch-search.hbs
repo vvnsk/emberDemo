@@ -1,14 +1,33 @@
 <form class="search">
-    {{input value=model.q}}<button {{action "fetchResults"}}>Search</button>
+  <div class="input-group">  
+    {{input type="text" class="form-control" value=model.q}}
+    <div class="input-group-btn">
+      <button {{action "fetchResults" "search"}} class="btn btn-default btn-lg">
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+      </button>
+    </div>
+    </div>
 </form>
-<p class='result'>{{model.searchResults.origin}}</p>
-{{#if isExpanded}}
-  <button {{action "toggleBody"}}>Hide Body</button>
-  <div class="body">
-    {{stream-list title="List of Games" games=model.list}}
+{{stream-list title="Search Results" games=model.searchResults searchText=model.q start=model.start}}
+
+<div class="pagination">
+      <ul class="pagination">
+        {{#if model.prevPage}}
+          <li><a href="#" {{action "selectPage" model.prevPage}}>&laquo;</a></li>
+        {{else}}
+          <li class="disabled"><a>&laquo;</a></li>
+        {{/if}}
+        
+        {{#each model.pages as |number|}}
+          <li><a href="#" {{action "selectPage" number}}>{{number}}</a></li>
+        {{/each}}
+        
+        {{#if model.nextPage}}
+          <li><a href="#" {{action "selectPage" model.nextPage}}>&raquo;</a></li>
+        {{else}}
+          <li class="disabled"><a>&raquo;</a></li>
+        {{/if}}
+      </ul>
   </div>
-{{else}}
-  <button {{action "toggleBody"}}>Show Body</button>
-{{/if}}
 
 {{outlet}}
