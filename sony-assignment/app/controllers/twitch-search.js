@@ -6,7 +6,6 @@ export default Ember.Controller.extend({
             var that = this;
             var setPrevPage = function(){
                 var page = that.model.page;
-                var totalPages = that.model.totalPages;
                 Ember.run(function() {
                     if(page > -1) {
                         that.set('model.prevPage',page);
@@ -36,7 +35,6 @@ export default Ember.Controller.extend({
                     if(i>0)
                         list.push(i)
                 }
-                console.log(list);
                 Ember.run(function() {
                     that.set('model.pages',list);
                 });
@@ -50,7 +48,7 @@ export default Ember.Controller.extend({
                 },
                 "data": { 
                 }, // End data payload
-                "success": function (data, textStatus, jqXHR) {
+                "success": function (data) {
                     Ember.run(function() {
                         that.set('model.searchResults',data.streams);
                         that.set('model.start',false);
@@ -63,7 +61,7 @@ export default Ember.Controller.extend({
                     
                     return data;
                 },
-                "error": function (jqXHR, textStatus, errorThrown) {
+                "error": function (jqXHR) {
                     window.console.log(jqXHR);
                     // Get the snackbar DIV
                     var x = document.getElementById("snackbar")
@@ -75,7 +73,6 @@ export default Ember.Controller.extend({
             });
         },selectPage: function(number) {
             var that = this;
-            console.log(number);
             if(number>=1){
                 Ember.run(function() {
                     that.set('model.page', number-1);
