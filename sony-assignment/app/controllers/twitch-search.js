@@ -8,8 +8,8 @@ export default Ember.Controller.extend({
                 var page = that.model.page;
                 var totalPages = that.model.totalPages;
                 Ember.run(function() {
-                    if(page > 1 && totalPages > 1) {
-                        that.set('model.prevPage',page - 1);
+                    if(page > -1) {
+                        that.set('model.prevPage',page);
                     } else {
                         that.set('model.prevPage',null);
                     }
@@ -20,8 +20,8 @@ export default Ember.Controller.extend({
                 var page = that.model.page;
                 var totalPages = that.model.totalPages;
                 Ember.run(function() {
-                    if(page < totalPages && totalPages > 1) {
-                        that.set('model.nextPage',page + 1);
+                    if(page < totalPages) {
+                        that.set('model.nextPage',page + 2);
                     } else {
                         that.set('model.nextPage',null);
                     }
@@ -32,7 +32,7 @@ export default Ember.Controller.extend({
                 var totalPages = that.model.totalPages;
                 var list = [];
 
-                for(var i=page-2;list.length<5&&i<totalPages;i++){
+                for(var i=page-1;list.length<5&&i<totalPages;i++){
                     if(i>0)
                         list.push(i)
                 }
@@ -48,20 +48,7 @@ export default Ember.Controller.extend({
                 "headers": {
                     'Client-ID': '8dr67w9awdrzf2kyglknzmhk4wfiii'
                 },
-                "data": { // Begin data payload
-                    "auth": {
-                        "type" : "basic",
-                        "password": "xxx",
-                        "username": "someone"
-                    },
-                    "requestId" : 15,
-                    "method": {
-                        "name": "getUserAvailabilityAndInfo",
-                        "params": {
-                            "userId" : "000",
-                            "peopleOnly" : "1"
-                        }
-                    }
+                "data": { 
                 }, // End data payload
                 "success": function (data, textStatus, jqXHR) {
                     Ember.run(function() {
@@ -78,14 +65,24 @@ export default Ember.Controller.extend({
                 },
                 "error": function (jqXHR, textStatus, errorThrown) {
                     window.console.log(jqXHR);
+                    // Get the snackbar DIV
+                    var x = document.getElementById("snackbar")
+                    // Add the "show" class to DIV
+                    x.className = "show";
+                    // After 3 seconds, remove the show class from DIV
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
                 }
             });
         },selectPage: function(number) {
             var that = this;
-            Ember.run(function() {
-                that.set('model.page', number-1);
-            });
-            this.send('fetchResults','page');
+            console.log(number);
+            if(number>=1){
+                Ember.run(function() {
+                    that.set('model.page', number-1);
+                });
+                this.send('fetchResults','page');
+            }
+            
         }
     }
 });

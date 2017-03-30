@@ -6,7 +6,7 @@ export default Ember.Route.extend({
             q : "",
             searchResults : [],
             start : true,
-            limit : 5,
+            limit : 4,
             page : 0,
             totalPages : 0,
             prevPage : null,

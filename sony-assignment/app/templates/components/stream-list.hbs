@@ -3,9 +3,20 @@
   {{#if start}}
     Search for Streams!
   {{else if games.length}}
-    {{#each games as |ele|}}
-      <div class="listItem"><p><img src={{ele.preview.small}} />{{ele.channel.game}}</p>{{ele.channel.display_name}}<p>Views : {{ele.channel.views}}</p></div>
-    {{/each}}
+    <div class="row">
+      {{#each games as |ele|}}
+      <div class="col-sm-6 col-md-3">
+        <div class="thumbnail">
+          <img src={{ele.preview.large}} />
+          <div class="caption">
+            <h3>{{ele.channel.game}}</h3>
+            <p>{{ele.channel.display_name}}</p>
+            <p><strong>Views : </strong>{{ele.channel.views}}</p>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
   {{else}}
     No Results!
   {{/if}}

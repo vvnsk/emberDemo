@@ -8,26 +8,29 @@
     </div>
     </div>
 </form>
-{{stream-list title="Search Results" games=model.searchResults searchText=model.q start=model.start}}
+{{#unless model.start}}
+  {{stream-list title="Search Results" games=model.searchResults searchText=model.q start=model.start}}
 
-<div class="pagination">
-      <ul class="pagination">
-        {{#if model.prevPage}}
-          <li><a href="#" {{action "selectPage" model.prevPage}}>&laquo;</a></li>
-        {{else}}
-          <li class="disabled"><a>&laquo;</a></li>
-        {{/if}}
-        
-        {{#each model.pages as |number|}}
-          <li class="item {{active-class number model.page}}"><a href="#" {{action "selectPage" number}}>{{number}}</a></li>
-        {{/each}}
-        
-        {{#if model.nextPage}}
-          <li><a href="#" {{action "selectPage" model.nextPage}}>&raquo;</a></li>
-        {{else}}
-          <li class="disabled"><a>&raquo;</a></li>
-        {{/if}}
-      </ul>
+  <div class="pagination">
+        <ul class="pagination">
+          {{#if model.prevPage}}
+            <li><a href="#" {{action "selectPage" model.prevPage}}>&laquo;</a></li>
+          {{else}}
+            <li class="disabled"><a>&laquo;</a></li>
+          {{/if}}
+          
+          {{#each model.pages as |number|}}
+            <li class="item {{active-class number model.page}}"><a href="#" {{action "selectPage" number}}>{{number}}</a></li>
+          {{/each}}
+          
+          {{#if model.nextPage}}
+            <li><a href="#" {{action "selectPage" model.nextPage}}>&raquo;</a></li>
+          {{else}}
+            <li class="disabled"><a>&raquo;</a></li>
+          {{/if}}
+        </ul>
   </div>
-
+{{/unless}}
+<!-- The actual snackbar -->
+<div id="snackbar">Error! Please try again.</div>
 {{outlet}}
