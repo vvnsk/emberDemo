@@ -56,6 +56,7 @@ export default Ember.Controller.extend({
                             that.set('model.page',0);
                         }
                         that.set('model.totalPages',data._total/that.model.limit);
+                        that.set('model.totalResults',data._total);
                         setPages();setPrevPage();setNextPage();
                     });
                     

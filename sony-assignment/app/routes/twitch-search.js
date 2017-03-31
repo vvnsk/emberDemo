@@ -9,6 +9,7 @@ export default Ember.Route.extend({
             limit : 4,
             page : 0,
             totalPages : 0,
+            totalResults : 0,
             prevPage : null,
             nextPage : null,
         }

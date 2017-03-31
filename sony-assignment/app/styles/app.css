@@ -73,8 +73,15 @@ form.search{
 }
 
 h2{
-    margin: 30px 0;
-    
+    margin: 20px 0;
+}
+
+ul.pagination{
+    margin:10px 0;
+}
+
+.totalRows{
+    margin-bottom:10px;
 }
 
 @media screen and (min-width: 480px) {
@@ -93,6 +100,22 @@ h2{
 
 div.pagination{
     margin: 10px 0;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    background-color: #6441A4;
+    border-color: #6441A4;
+}
+
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus, .pagination>li>span:hover {
+    color: #6441A4;
+}
+.pagination>li>a, .pagination>li>span{
+    color:#6441A4
+}
+a:focus, a:hover {
+    color: #6441A4;
+    text-decoration: underline;
 }
 
 /* The snackbar - position it at the bottom and in the middle of the screen */
